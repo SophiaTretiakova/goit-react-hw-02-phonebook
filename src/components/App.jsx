@@ -4,6 +4,7 @@ import { nanoid } from 'nanoid';
 import { PhoneBook } from './PhoneBook/PhoneBook';
 import { ContactsList } from './Contacts/ContactsList';
 import { Filter } from './Filter/Filter';
+import { GlobalStyles } from './GlobalStyles.styled';
 
 export class App extends Component {
   state = {
@@ -48,7 +49,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <Section title="Phone book">
           <PhoneBook addNewContact={this.addContact} />
         </Section>
@@ -62,7 +63,8 @@ export class App extends Component {
             <p>There are no contacts with this name</p>
           )}
         </Section>
-      </div>
+        <GlobalStyles />
+      </>
     );
   }
 }

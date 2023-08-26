@@ -1,6 +1,7 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import propTypes from 'prop-types';
+import { StyledForm, Label } from './PhoneBook.styled';
 
 const AddSchema = Yup.object().shape({
   name: Yup.string()
@@ -23,23 +24,24 @@ export const PhoneBook = ({ addNewContact }) => {
       <Formik
         initialValues={{ name: '', number: '' }}
         validationSchema={AddSchema}
-        onSubmit={values => {
+        onSubmit={(values, actions) => {
           addNewContact(values);
+          actions.resetForm();
         }}
       >
-        <Form>
-          <label>
+        <StyledForm>
+          <Label>
             <p>Name</p>
             <Field name="name" type="text" />
             <ErrorMessage name="name"></ErrorMessage>
-          </label>
-          <label>
+          </Label>
+          <Label>
             <p>Number</p>
             <Field name="number" type="tel" />
             <ErrorMessage name="number"></ErrorMessage>
-          </label>
+          </Label>
           <button type="submit">Add contact</button>
-        </Form>
+        </StyledForm>
       </Formik>
     </div>
   );
