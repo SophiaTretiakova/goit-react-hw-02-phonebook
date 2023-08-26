@@ -3,10 +3,12 @@ import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { PhoneBook } from './PhoneBook/PhoneBook';
 import { ContactsList } from './Contacts/ContactsList';
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
     contacts: [],
+    filter: '',
   };
 
   addContact = newContact => {
@@ -21,6 +23,17 @@ export class App extends Component {
     }));
   };
 
+  handleChange = evt => {
+    this.setState({ filter: evt.target.value });
+  };
+
+  getFilterContacts = () => {
+    const normalizedFilter = this.state.filter.toLowerCase().trim();
+    return this.state.contacts.filter(contact => {
+      return contact.name.toLowerCase().includes(normalizedFilter);
+    });
+  };
+
   render() {
     return (
       <div>
@@ -28,8 +41,9 @@ export class App extends Component {
           <PhoneBook addNewContact={this.addContact} />
         </Section>
         <Section title="Contacts">
+          <Filter handleChange={this.handleChange} />
           <ContactsList
-            contacts={this.state.contacts}
+            contacts={this.getFilterContacts()}
             onDeleteContact={this.handleDeleteContact}
           />
         </Section>
