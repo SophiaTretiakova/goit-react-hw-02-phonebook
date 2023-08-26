@@ -6,6 +6,7 @@ export const Filter = ({ handleChange }) => {
         label="search"
         variant="outlined"
         onChange={handleChange}
+        placeholder="Find contact by name"
       />
     </div>
   );

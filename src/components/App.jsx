@@ -12,9 +12,13 @@ export class App extends Component {
   };
 
   addContact = newContact => {
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, { id: nanoid(5), ...newContact }],
-    }));
+    if (this.state.contacts.some(contact => contact.name === newContact.name)) {
+      alert('Contact with the same name already exists.');
+    } else {
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, { id: nanoid(5), ...newContact }],
+      }));
+    }
   };
 
   handleDeleteContact = id => {
