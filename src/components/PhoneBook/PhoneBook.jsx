@@ -1,5 +1,6 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import propTypes from 'prop-types';
 
 const AddSchema = Yup.object().shape({
   name: Yup.string()
@@ -42,4 +43,15 @@ export const PhoneBook = ({ addNewContact }) => {
       </Formik>
     </div>
   );
+};
+
+PhoneBook.propTypes = {
+  addNewContact: propTypes.func,
+  contacts: propTypes.arrayOf(
+    propTypes.shape({
+      id: propTypes.string,
+      name: propTypes.string,
+      number: propTypes.string,
+    })
+  ),
 };

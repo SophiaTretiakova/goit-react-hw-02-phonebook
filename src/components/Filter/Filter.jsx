@@ -1,3 +1,5 @@
+import propTypes from 'prop-types';
+
 export const Filter = ({ handleChange }) => {
   return (
     <div>
@@ -10,4 +12,8 @@ export const Filter = ({ handleChange }) => {
       />
     </div>
   );
+};
+
+Filter.propTypes = {
+  handleChange: propTypes.func,
 };
